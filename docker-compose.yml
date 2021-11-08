@@ -1,0 +1,47 @@
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - prod-network
+
+  api:
+    build:
+      dockerfile: ./docker/api.Dockerfile
+      context: .
+    image: spellcaster/reports-api
+    container_name: reports-api
+    volumes:
+      - ./reports_api/api:/reports_api
+    env_file:
+      - reports_api/.env
+    ports:
+      - "5000"
+    networks:
+      - prod-network
+    depends_on:
+      - "mongodb"
+
+  service:
+    build:
+      dockerfile: ./docker/service.Dockerfile
+      context: .
+    image: spellcaster/reports-service
+    container_name: reports-service
+    volumes:
+      - ./reports_service/service:/reports_service
+    env_file:
+      - reports_service/.env
+    networks:
+      - prod-network
+    depends_on:
+      - "mongodb"
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  prod-network:
+    driver: bridge
