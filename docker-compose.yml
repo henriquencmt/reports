@@ -4,39 +4,58 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - prod-network
-
-  api:
-    build:
-      dockerfile: ./docker/api.Dockerfile
-      context: .
-    image: spellcaster/reports-api
-    container_name: reports-api
-    volumes:
-      - ./reports_api/api:/reports_api
-    env_file:
-      - reports_api/.env
-    ports:
-      - "5000"
-    networks:
-      - prod-network
-    depends_on:
-      - "mongodb"
+      prod-network:
+        ipv4_address: 172.20.0.2
 
   service:
     build:
       dockerfile: ./docker/service.Dockerfile
       context: .
-    image: spellcaster/reports-service
+    image: reports/reports-service
     container_name: reports-service
     volumes:
       - ./reports_service/service:/reports_service
     env_file:
       - reports_service/.env
     networks:
-      - prod-network
+      prod-network:
+        ipv4_address: 172.20.0.3
     depends_on:
       - "mongodb"
+
+  api:
+    build:
+      dockerfile: ./docker/api.Dockerfile
+      context: .
+    image: reports/reports-api
+    container_name: reports-api
+    volumes:
+      - ./reports_api/api:/reports_api
+    env_file:
+      - reports_api/.env
+    ports:
+      - "5000:5000"
+    networks:
+      prod-network:
+        ipv4_address: 172.20.0.4
+    depends_on:
+      - "mongodb"
+
+  ui:
+    build:
+      dockerfile: ./docker/ui.Dockerfile
+      context: .
+    image: reports/reports-ui
+    container_name: reports-ui
+    volumes:
+      - ./reports_ui/src:/reports_ui/src
+    ports:
+      - "3000:3000"
+    networks:
+      prod-network:
+        ipv4_address: 172.20.0.5
+    depends_on:
+     - "api"
 
 volumes:
   mongo-data:
@@ -45,3 +64,8 @@ volumes:
 networks:
   prod-network:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.20.0.1
