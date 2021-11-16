@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  background: #FAF9F8;
+  
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.title-link {
+  padding: 5px 10px;
+  
+  text-decoration: none;
+  background: #171717;
+  
+}
+
+.title-box {
+  color: #FAF9F8;
+  
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.nav-bar {
+  width: 240px;
+  padding-top: 20px;
+
+  background: #FAF9F8;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-bar-link {
+  width: 80px;
+
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-bar-link:hover {
+  text-decoration: underline #171717;
+}
+
+.nav-bar-box {
+  color: #171717;
+}
+
+.search-bar {
+  height: 20px;
+  padding: 3px 5px;
+  margin-bottom: 5px;
+
+  border: 1px solid #171717;
+  border-radius: 3px;
+}
+
+.search-bar-input {
+  margin-left: 5px;
+  
+  outline: none;
+  border: 0;
+
+  background: #FAF9F8;
+}
+
+.report-link {
+  height: 50px;
+
+  text-decoration: none;
+  border-radius: 5px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.report-link:hover {
+  background: #fffaaf;
+}
+
+.active {
+  color: #000;
+  font-weight: bold;
+}
+
+.gray {
+  color: #171717;
+}
+
+.download-btn {
+  border-style: none;
+  border-radius: 5px;
+
+  margin: 5px;
+  padding: 5px 10px;
+
+  color: #FAF9F8;
+}
+
+.download-btn:hover {
+  cursor: pointer;
+  color: #FFF
+}
+
+.xl-btn {
+  background: #3B713B;
+}
+
+.xl-btn:hover {
+  background: #4c864c;
+}
+
+.ppt-btn {
+  background: #B13B19;
+}
+
+.ppt-btn:hover {
+  background: #cc4c28;
+}
