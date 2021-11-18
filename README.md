@@ -26,7 +26,7 @@ cp reports_service/.example.env reports_service/.env
 ```
 
 :warning:
-If you want to be able to send reports by email each time a report runs, change the keys `EMAIL_USER` and `EMAIL_PASSWORD` values.
+If you want to be able to send reports by email each time a report runs, change the keys `EMAIL_USER` and `EMAIL_PASSWORD` values in the file `reports_service/.env`.
 You have to setup your MongoDB instance with a database called "users" with a collection called "users", and insert users containing these two fields: { "mailing_list": true, "email": "example@email.com" }.
 
 Start the application containers.
