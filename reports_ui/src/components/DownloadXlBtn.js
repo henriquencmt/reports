@@ -18,7 +18,7 @@ export default function DownloadXlBtn({ to, ...props }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://172.20.0.4:5000/file/${report}/xlsm/${reportId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/file/${report}/xlsm/${reportId}`)
     .then(res => {
       if (res.ok) {
         return new Blob([res], { type: 'application/octet-stream' })
