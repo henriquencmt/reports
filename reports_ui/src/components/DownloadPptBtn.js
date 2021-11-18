@@ -19,7 +19,7 @@ export default function DownloadPptBtn({ to, ...props }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://172.20.0.4:5000/file/${report}/pptx/${reportId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/file/${report}/pptx/${reportId}`)
     .then(res => {
       if (res.ok) {
         return new Blob([res], { type: 'application/octet-stream' })

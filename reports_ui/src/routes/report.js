@@ -18,7 +18,7 @@ export default function Report() {
   let reportPath = location.pathname.slice(1).split("/")[0]
 
   useEffect(() => {
-    fetch(`http://172.20.0.4:5000/report/${reportPath}/?id=${params.reportId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/report/${reportPath}/?id=${params.reportId}`)
       .then((res) => {
         if (res.ok) {
           return res.json();
